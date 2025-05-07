@@ -167,7 +167,7 @@ export const Orders = () => {
                                 <TableCell align="center"><strong>Status</strong></TableCell>
                                 <TableCell align="center"><strong>Date</strong></TableCell>
                                 <TableCell align="center"><strong>Rating</strong></TableCell>
-                                <TableCell align="center"><strong>Export</strong></TableCell>
+                                {/* <TableCell align="center"><strong>Export</strong></TableCell> */}
                                 <TableCell align="center"><strong>Action</strong></TableCell>
                             </TableRow>
                         </TableHead>
@@ -189,9 +189,9 @@ export const Orders = () => {
                                     <TableCell align="center">
                                         <Rating name="half-rating" defaultValue={2.5} precision={0.5} size="small" sx={{}} />
                                     </TableCell>
-                                    <TableCell align="center">
+                                    {/* <TableCell align="center">
                                         <UploadIcon sx={{ color: '#898282' }} />
-                                    </TableCell>
+                                    </TableCell> */}
 
                                     {/* <TableCell align='center' spacing={1}>
                                 <Rating name="half-rating" defaultValue={2.5} precision={0.5} size="small" />
