@@ -68,50 +68,51 @@ export const InvoicePDF = ({ userData, orderData, productData }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <Text style={styles.header}>Order Invoice</Text>
+   <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+  <View style={styles.section}>
+    <Text>Customer Name: {userData?.name?.firstname} {userData?.name?.lastname}</Text>
+    <Text>Email: {userData?.email}</Text>
+    <Text>Phone: {userData?.phone}</Text>
+  </View>
 
-      <View style={styles.section}>
-        <Text>Customer Name: {userData?.name?.firstname} {userData?.name?.lastname}</Text>
-        <Text>Email: {userData?.email}</Text>
-        <Text>Phone: {userData?.phone}</Text>
+  <View style={styles.section}>
+    <Text>Order ID: {orderData?.id}</Text>
+    <Text>Order Date: {orderData?.orderDate}</Text>
+  </View>
+</View>
+
+    <View style={styles.table}>
+      <View style={styles.tableRow}>
+        <Text style={styles.tableCellHeader}>ID</Text>
+        <Text style={styles.tableCellHeader}>Image</Text>
+        <Text style={styles.tableCellHeader}>Title</Text>
+        <Text style={styles.tableCellHeader}>Brand</Text>
+        <Text style={styles.tableCellHeader}>Qty</Text>
+        <Text style={styles.tableCellHeader}>Price</Text>
       </View>
 
-      <View style={styles.section}>
-        <Text>Order ID: {orderData?.id}</Text>
-        <Text>Order Date: {orderData?.orderDate}</Text>
-      </View>
-
-      <View style={styles.table}>
-        <View style={styles.tableRow}>
-          <Text style={styles.tableCellHeader}>ID</Text>
-          <Text style={styles.tableCellHeader}>Image</Text>
-          <Text style={styles.tableCellHeader}>Title</Text>
-          <Text style={styles.tableCellHeader}>Brand</Text>
-          <Text style={styles.tableCellHeader}>Qty</Text>
-          <Text style={styles.tableCellHeader}>Price</Text>
+      {productData.map((product) => (
+        <View style={styles.tableRow} key={product.id}>
+          <Text style={styles.tableCell}>{product.id}</Text>
+          <Text style={styles.tableCell}>Image</Text>
+          <Text style={styles.tableCell}>{product.title}</Text>
+          <Text style={styles.tableCell}>{product.brand}</Text>
+          <Text style={styles.tableCell}>{product.quantity}</Text>
+          <Text style={styles.tableCell}>{product.price * product.quantity}</Text>
         </View>
+      ))}
 
-        {productData.map((product) => (
-          <View style={styles.tableRow} key={product.id}>
-            <Text style={styles.tableCell}>{product.id}</Text>
-            <Text style={styles.tableCell}>Image</Text>
-            <Text style={styles.tableCell}>{product.title}</Text>
-            <Text style={styles.tableCell}>{product.brand}</Text>
-            <Text style={styles.tableCell}>{product.quantity}</Text>
-            <Text style={styles.tableCell}>{product.price * product.quantity}</Text>
-          </View>
-        ))}
-
-        <View style={styles.tableRow}>
-          <Text style={styles.tableCell}></Text>
-          <Text style={styles.tableCell}></Text>
-          <Text style={styles.tableCell}></Text>
-          <Text style={styles.tableCell}></Text>
-          <Text style={styles.tableCell}>Total</Text>
-          <Text style={styles.tableCell}>{orderData?.totalAmount}</Text>
-        </View>
+      <View style={styles.tableRow}>
+        <Text style={styles.tableCell}></Text>
+        <Text style={styles.tableCell}></Text>
+        <Text style={styles.tableCell}></Text>
+        <Text style={styles.tableCell}></Text>
+        <Text style={styles.tableCell}>Total</Text>
+        <Text style={styles.tableCell}>{orderData?.totalAmount}</Text>
       </View>
+    </View>
 
-      <Text style={styles.footer}>Thank You! Have a Nice Day!</Text>
-    </Page>
-  </Document>
+    <Text style={styles.footer}>Thank You! Have a Nice Day!</Text>
+  </Page>
+  </Document >
 );
